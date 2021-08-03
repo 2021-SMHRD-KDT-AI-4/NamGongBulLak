@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <!-- 임포트 -->
+    <link rel="stylesheet" href="./static/css/style.css" />
+    <script src="//code.jquery.com/jquery-1.11.0.min.js"></script>
+    <script type="text/javascript">   
+		$(document).ready(function() {
+			$("#menu").load("./menu.html");
+		});
+	</script>
+    <title>Navigation</title>
+</head>
+<body>
+    <div style="background-color: rgba(0,0,0,0.5); width: 100%; height: 7.5rem; color: white; display: flex; justify-content: space-between; align-items: center;">
+        <!-- 메뉴 버튼 -->
+        <div style="width: 30vw; height: 2.5rem; margin: 0 1rem;">
+            <input type="checkbox" id="menuicon">
+            <label for="menuicon">
+                <span></span>
+                <span></span>
+                <span></span>
+            </label>
+            <!-- 메뉴 -->
+            <div id="menu"></div>
+        </div>
+        <!-- 네비게이션 로고 -->
+        <div style="width: 30vw; height: auto;">
+            <a href="./main.html"><img src="./static/img/kdcc-logo.png" style="width: 7.5rem; height: 7.5rem;"></a>
+        </div>
+        <!-- 네비게이션 버튼들 -->
+        <div style="width: 30vw; height: auto; display: flex; align-items: center; justify-content: flex-end; font-family: 'Bangtan';">
+            <!-- 로그인 안했을 시 -->
+            <a href="./login.html" style="margin: 0 1rem;">로그인</a>
+            <a href="" style="margin: 0 1rem;">회원가입</a>
+            <!-- 언어 설정 버튼 -->
+            <img src="./static/icon/global_white.png" style="width: 3.75rem; height: 3.75rem; margin: 0 1rem;">
+        </div>
+    </div>
+</body>
+</html>

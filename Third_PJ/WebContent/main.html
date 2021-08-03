@@ -1,0 +1,37 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <!-- 임포트 -->
+    <link rel="stylesheet" href="./static/css/style.css" />
+    <script src="//code.jquery.com/jquery-1.11.0.min.js"></script>
+    <script type="text/javascript">   
+        $(document).ready(function() {
+			$("#navi").load("./navigation.html");
+		});
+	</script>
+    <title>Main</title>
+</head>
+<body>
+    <div style="background-color: rgba(0,0,0,0.5); width: 100%; height: 100vh;">
+        <!-- 상단 네비게이션 -->
+        <div id="navi"></div>
+        <!-- 메인 내용 -->
+        <div style="height: 100%; display: flex;">
+            <!-- 샘플 이미지 2개 -->
+            <div style="width: 50%; height: 100%;">
+                <div style="width: 100%; height: 3rem;"></div>
+                <img src="./static/img/main_sample1.png" style="width: 40rem; height: 22.5rem; border: 0.0625rem solid #ffffff;">
+                <div style="height: 1rem;"></div>
+                <img src="./static/img/main_sample2.png" style="width: 40rem; height: 22.5rem; border: 0.0625rem solid #ffffff;">
+            </div>
+            <!-- 웹페이지 소개글 이미지 -->
+            <div style="width: 50%; height: 100%;">
+                <img src="./static/img/main_sample3.png" style="height: 53rem; width: 100%;">
+            </div>
+        </div>
+    </div>
+</body>
+</html>

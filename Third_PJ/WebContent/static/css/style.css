@@ -1,0 +1,80 @@
+@charset "utf-8";
+
+/* 폰트 설정 */
+@font-face {
+    font-family:'GmarketSansTTFLight';
+    src: url("/static/font/GmarketSansTTFLight.ttf")
+}
+
+@font-face {
+    font-family:'GmarketSansTTFBold';
+    src: url("/static/font/GmarketSansTTFBold.ttf")
+}
+
+@font-face {
+    font-family:'GmarketSansTTFMedium';
+    src: url("/static/font/GmarketSansTTFMedium.ttf")
+}
+
+@font-face {
+    font-family:'Bangtan';
+    src: url("/static/font/DXBangtango-KSCpc-EUC-H.ttf")
+}
+
+/* body 기본 설정 */
+body {
+    font-family: 'GmarketSansTTFMedium';
+    font-size: 1.6rem;
+    text-align: center;
+    height: auto;
+    width: auto;
+    margin: auto;
+    background-image: url('../img/bts.jpg');
+    object-fit:cover;
+    color: white;
+    overflow: hidden;
+}
+
+/* a태그 기본 설정 */
+a {
+    text-decoration-line: none;
+    color: white;
+}
+
+input {
+    font-family: 'GmarketSansTTFMedium';
+}
+
+/* 메뉴 동작 CSS */
+input[id="menuicon"] {display:none;}
+input[id="menuicon"] + label {display:block; width:2.5rem;height:2.5rem;position:relative;cursor:pointer;}
+input[id="menuicon"] + label span {display:block;position:absolute;width:100%;height:0.5rem;background:#fff;transition:all .35s;}
+input[id="menuicon"] + label span:nth-child(1) {top:0;z-index:99;}
+input[id="menuicon"] + label span:nth-child(2) {top:50%;transform:translateY(-50%);z-index:99;} /* 비슷하게 사용할 수 있는 style top:calc(50% - 2.5px); margin-top:-2.5px;*/
+input[id="menuicon"] + label span:nth-child(3) {bottom:0;z-index:99;}
+input[id="menuicon"]:checked + label {z-index:99;}
+input[id="menuicon"]:checked + label span {background:#fff;}
+input[id="menuicon"]:checked + label span:nth-child(1) {top:50%;transform:translateY(-50%) rotate(45deg);}
+input[id="menuicon"]:checked + label span:nth-child(2) {opacity:0;}
+input[id="menuicon"]:checked + label span:nth-child(3) {bottom:50%;transform:translateY(50%) rotate(-45deg);}
+div[class="menu"] {display: none; position:fixed;top:0;left: 0;z-index:1;transition:all .35s;}
+input[id="menuicon"]:checked + label + div div.menu {display: block; z-index: 10; background-color: rgba(0,0,0,0.9);}
+
+/* 반응형 폰트 크기 조절 */
+@media (min-width: 1024px) {
+    html {
+        font-size: 100%;
+    }
+}
+
+@media (min-width: 768px) and (max-width: 1024px) {
+    html {
+        font-size: 62.5%;
+    }
+}
+
+@media (max-width: 768px) {
+    html {
+        font-size: 50%;
+    }
+}
