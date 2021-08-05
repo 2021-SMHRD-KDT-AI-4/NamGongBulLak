@@ -11,6 +11,9 @@
         $(document).ready(function() {
 			$("#navi").load("./navigation.html");
 		});
+        $(document).ready(function() {
+			$("#emblem").load("./emblem.html");
+		});
 	</script>
     <title>MyPage</title>
 </head>
@@ -57,15 +60,20 @@
                             <input type="button" value="개인정보 수정">
                         </div>
                         <div>
-                            <input type="button" value="리플레이">
+                            <input type="button" value="리플레이" onclick="location.href='./replay.html'">
                         </div>
                         <div>
-                            <input type="button" value="엠블럼 수정">
+                            <input type="checkbox" id="btnEmblem">
+                            <label for="btnEmblem">    
+                                <div style="width: 10rem; height: 2.5rem; background-color: black; border: 0.0625rem solid white; margin: auto; display: flex; justify-content: center; align-items: center;">엠블럼 수정</div>
+                            </label>
+                            <div id="emblem"></div>
                         </div>
                     </div>
                 </div>
                 <div style="height: 1rem;"></div>
-                <div style="height: 35.5rem; background-color: rgba(207, 207, 207, 0.5); color: black; overflow:scroll;">
+                <!-- 테이블 -->
+                <div style="height: 35.5rem; background-color: rgba(207, 207, 207, 0.5); color: black; overflow:overlay;">
                     <!-- 테이블 제목 -->
                     <div style="font-size: 2rem; font-family: 'GmarketSansTTFBold'; display: grid; grid-template-columns: 5rem 10rem 18.75rem 4.5rem 8rem 10.75rem;">
                         <div>번호</div>

@@ -1,0 +1,75 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <!-- 임포트 -->
+    <link rel="stylesheet" href="./static/css/style.css" />
+    <script src="//code.jquery.com/jquery-1.11.0.min.js"></script>
+    <script type="text/javascript">   
+        $(document).ready(function() {
+			$("#navi").load("./navigation.html");
+		});
+	</script>
+    <title>PlayDanceResult</title>
+</head>
+<body>
+    <div style="background-color: rgba(0,0,0,0.5); width: 100%; height: 100vh;">
+        <!-- 상단 네비게이션 -->
+        <div id="navi"></div>
+        <!-- 메인 내용 -->
+        <div style="height: 1.25rem;"></div>
+        <!-- 사용자 닉네임 -->
+        <span style="font-family: 'GmarketSansTTFBold'; font-size: 2rem;">남공불락화이팅님의 PlayDance결과</span>
+        <div style="width: 101.25rem; height: 42.5rem; background-color: rgba(112, 112, 112, 0.6); margin: auto; border: 0.25rem solid #fff; border-radius: 2rem; display: flex; flex-direction: row;">
+            <div style="width: 33.75rem;">
+                <div style="height: 2.5rem;"></div>
+                <!-- 노래 앨범 이미지 -->
+                <img src="./static/img/라일락.jpg" style="width: 22.5rem; height: 22.5rem;">
+                <!-- 노래 이름 -->
+                <br><span>라일락 - 아이유 (IU)</span>
+            </div>
+            <div style="width: 33.75rem;">
+                <div style="height: 4.5rem;"></div>
+                <div style="height: 22.75rem; display: flex; flex-direction: row; justify-content: center;">
+                    <div style="font-family: 'Bangtan'; font-size: 3.2rem; display: flex; flex-direction: column; justify-content: space-around; text-align: left;">
+                        <span>MISS</span>
+                        <span>GOOD</span>
+                        <span>GREAT</span>
+                        <span>PERFECT</span>
+                    </div>
+                    <div style="font-family: 'GmarketSansTTFBold'; font-size: 3.2rem; display: flex; flex-direction: column; justify-content: space-around; text-align: right; margin-left: 2rem;">
+                        <!-- MISS -->
+                        <span>17.7%</span>
+                        <!-- GOOD -->
+                        <span>34.4%</span>
+                        <!-- GREAT -->
+                        <span>24.6%</span>
+                        <!-- PERFECT -->
+                        <span>23.3%</span>
+                    </div>
+                </div>
+                <div style="height: 3.5rem;"></div>
+                <span style="font-family: 'Bangtan'; font-size: 8rem;">TOTAL</span>
+            </div>
+            <div style="width: 33.75rem;">
+                <div style="height: 2rem;"></div>
+                <!-- GRADE -->
+                <span style="font-family: 'Bangtan'; font-size: 24rem; -webkit-text-stroke-width: 1rem; -webkit-text-stroke-color: black;">
+                    A
+                </span>
+                <span style="font-family: 'Bangtan'; font-size: 8rem;">
+                    72.7
+                </span>
+            </div>
+        </div>
+        <div style="height: 1.25rem;"></div>
+        <!-- 버튼 -->
+        <input type="button" value="리플레이" style="margin: 0 0.75rem; width: 7.5rem; height: 3rem; background-color: black; color: white; font-size: 1.6rem; font-family: 'GmarketSansTTFBold'; border: 0.0625rem solid #fff; border-radius: 1rem;">
+        <input type="button" value="다시하기" style="margin: 0 0.75rem; width: 7.5rem; height: 3rem; background-color: black; color: white; font-size: 1.6rem; font-family: 'GmarketSansTTFBold'; border: 0.0625rem solid #fff; border-radius: 1rem;">
+        <input type="button" value="목록으로" style="margin: 0 0.75rem; width: 7.5rem; height: 3rem; background-color: black; color: white; font-size: 1.6rem; font-family: 'GmarketSansTTFBold'; border: 0.0625rem solid #fff; border-radius: 1rem;">
+        <input type="button" value="홈으로" onclick="location.href='./main.html'" style="margin: 0 0.75rem; width: 7.5rem; height: 3rem; background-color: black; color: white; font-size: 1.6rem; font-family: 'GmarketSansTTFBold'; border: 0.0625rem solid #fff; border-radius: 1rem;">
+    </div>
+</body>
+</html>
