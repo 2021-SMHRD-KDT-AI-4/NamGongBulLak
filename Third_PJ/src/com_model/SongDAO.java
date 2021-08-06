@@ -52,7 +52,7 @@ public class SongDAO {
 		
 		conn();
 		try {
-		String sql="select album_file_name, song_title, song_singer, album_name from dence_info order by album_name desc";
+		String sql="select album_file_name, song_title, song_singer, album_name from dance_info order by album_name desc";
 		psmt = conn.prepareStatement(sql);
 		rs=psmt.executeQuery();
 		

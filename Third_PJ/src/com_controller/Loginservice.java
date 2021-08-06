@@ -33,7 +33,7 @@ public class Loginservice extends HttpServlet {
 			   session.setMaxInactiveInterval(500);
 			   session.setAttribute("info", info);
 			   System.out.println("로그인 성공");
-			//   response.sendRedirect("Main.jsp");
+			   response.sendRedirect("main.html");
 			  // response.sendRedirect("loginsuccess.jsp");
 		   }else {
 			   System.out.println("로그인 실패");
