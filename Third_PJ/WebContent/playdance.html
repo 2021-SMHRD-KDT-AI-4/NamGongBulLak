@@ -27,7 +27,7 @@
                 Butter - 방탄소년단
                 <!-- 댄스 화면 -->
                 <div style="background-color: black; height: 100%; margin: 0 1rem;">
-                    <video src="./static/video/butter1.mp4" autoplay loop height="100%" width="100%"></video>
+                    <video id="vod" src="./static/video/butter1.mp4" width=928 height=524 autoplay loop height="100%" width="100%" muted="muted"></video>
                 </div>
             </div>
             <!-- 사용자 화면 -->
@@ -36,7 +36,7 @@
                 남공불락님의 화면
                 <!-- 캠 화면 -->
                 <div style="background-color: black; height: 100%; margin: 0 1rem;">
-                    <video src="./static/video/butter1.mp4" autoplay loop muted height="100%" width="100%"></video>
+                    <video id="cam" src="./static/video/butter1.mp4" width=928 height=524 autoplay loop muted height="100%" width="100%" muted="muted"></video>
                 </div>
             </div>
         </div>
@@ -55,8 +55,177 @@
             <!-- 게이지바 -->
             <div style="width: 85%; background-color: yellow;">게이지바</div>
             <!-- 점수 텍스트?이미지? 표출 -->
-            <div style="width: 15%;">Score : 29.37</div>
+            <!-- <div style="width: 15%;">Score : 29.37</div> -->
+            <div style="width: 15%;"><p id="p"></p></div>
         </div>
     </div>
+    
+    <!-- 실시간 점수 띄워 주는 기능 , 플라스크 서버 열어야지 활성화 됨-->
+    <script src="js/jquery-3.5.1.min.js"></script>
+    <script type="text/javascript">
+    
+    let pd = document.getElementById("p") //정확도 실시간으로 보여주는 곳
+    var cnt = 0; //정확도 평균에 필요한 변수
+    var cnt2 = 0; //영상 끝나면 페이지 넘기게 하는 변수
+    
+    
+    /* 카메라 허용하기 & 스트리밍 시작 */
+    let vod = document.getElementById("vod");
+    let cam = document.getElementById("cam");
+    
+    vod.play();
+    cam.play();
+    
+  	//cam 좌표간 거리를 담을 변수
+    var c1 = 1;
+    var c2 = 1;
+    var c3 = 1;
+    var c4 = 1;
+
+  	//vod 좌표간 거리를 담을 변수
+    var v1 = 1;
+    var v2 = 1;
+    var v3 = 1;
+    var v4 = 1;
+
+  	//좌표간 거리를 배열로 담을 변수
+    var v_distans = [];
+    var c_distans = [];
+    
+  	//정확도 결과를 담을 변수
+    var result = 0;
+    var sum = 0;
+    var avg = 0;
+    var res_avg = 0;
+    
+    /* 
+     function a(stream) {
+    	 cam.srcObject = stream;
+    	 cam.play();
+    } */
+     
+     
+    //캠이 있으면 주석 빼고 실행
+    /* navigator.mediaDevices.getUserMedia({ video: true, audio: false })
+    .then(function(stream) {
+    	cam.srcObject = stream;
+    	cam.play();
+    })
+    .catch(function(err) {
+        console.log("An error occurred! " + err);
+    }); */
+    
+    //실시간으로 정확도 판별해주는 함수
+    function onOpenCvReady1(){
+    	
+    	sum = 0;
+    	avg = 0;
+    	result = 0;
+    	
+    	let height1 = vod.height;
+    	let height2 = cam.height;
+    	let width1 = vod.width;
+    	let width2 = cam.width;
+    	let src1 = new cv.Mat(height1, width1, cv.CV_8UC4); // 8 byte 4 channel
+    	let src2 = new cv.Mat(height2, width2, cv.CV_8UC4); // 8 byte 4 channel
+    	let dst1 = new cv.Mat(height1, width1, cv.CV_8UC1); // 8 byte 1 channel
+    	let dst2 = new cv.Mat(height2, width2, cv.CV_8UC1); // 8 byte 1 channel
+    	let cap1 = new cv.VideoCapture(vod);
+    	let cap2 = new cv.VideoCapture(cam);
+    	const FPS = 6; // 초당 프레임수 조절 -> 흑백 변환 프레임 레이트, 7프레임 이상 하면 플라스크 서버 터짐
+    	function processVideo() {
+    		
+    	    let begin = Date.now();
+    	    cap1.read(src1);
+    	    cap2.read(src2);
+    	    //console.log(src1.data);
+    	    sendData1(src1.data); // 서버로 데이터 전송
+    	    sendData2(src2.data); // 서버로 데이터 전송
+    	    cv.cvtColor(src1, dst1, cv.COLOR_RGBA2GRAY);
+    	    cv.cvtColor(src2, dst2, cv.COLOR_RGBA2GRAY);
+    	    //cv.imshow("canvasOutput1", dst1);
+    	    //cv.imshow("canvasOutput2", dst2);
+    	    // schedule next one.
+    	    let delay = 1000/FPS - (Date.now() - begin);
+    	    setTimeout(processVideo, delay);
+    	    result = acc_cal(v_distans,c_distans);
+    	    if(!isNaN(result)&&result>0.1){
+    	    	cnt++;
+    	    	sum+=result;
+    	    	avg = sum/cnt;
+    	    	pd.innerHTML = avg;
+    	    	cnt2 = 0;
+    	 	    console.log(result);
+    	 	    //console.log(cnt);
+    	    }
+    	   
+    	    //영상끝나는것을 측정하기 위한 cnt2 
+    	    if(isNaN(result)){
+    	    	cnt2++;
+    	    	//측정을 하지못하면 페이지 넘어가기때문에
+    	    	//경고문 적어주기
+    	    }
+    	    
+    	    //영상끝나고 데이터와 페이지 이동
+    	    /* if(isNaN(result)&&cnt2==14){//14->10초 7->5초
+    	    	location.href = "http://localhost:8081/tfjs/dbsave?a="+avg; //이동할 페이지 주소와 쿼리스트링으로 데이터 보내는 코드
+    	    } */
+    	}
+    	// schedule first one.
+    	setTimeout(processVideo, 0);
+    }
+    
+  	//거리간 비율 구하는 함수
+    function ab(a,b){
+    	if(a>=b){
+    		return b/a;
+    	}else if(a<b){
+    		return (2*a-b)/a;
+    	}
+    }
+  	
+    //정확도 계산하는 함수
+    function acc_cal(v_distans,c_distans){
+    	  v1 = v_distans[0];
+          v2 = v_distans[1];
+          v3 = v_distans[2];
+          v4 = v_distans[3];
+          c1 = c_distans[0];
+          c2 = c_distans[1];
+          c3 = c_distans[2];
+          c4 = c_distans[3];
+          
+          acc1 = ab(v1,c1);
+          acc2 = ab(v2,c2);
+          acc3 = ab(v3,c3);
+          acc4 = ab(v4,c4);
+          
+          acc_result = (acc1+acc2+acc3+acc4)/4
+          
+          return acc_result
+    }
+    
+    let requestURL1 = "http://127.0.1.2:5000/test2"; //vod 플라스크 서버 주소
+    let requestURL2 = "http://127.0.1.3:5000/test2"; //cam 플라스크 서버 주소
+    function sendData1(data){
+    	const xhr1 = new XMLHttpRequest();
+        xhr1.open('POST', requestURL1);
+        xhr1.onload = () => {
+           v_distans= (xhr1.response).split("/")
+        };
+        xhr1.send(data);
+    }
+    function sendData2(data){
+    	const xhr2 = new XMLHttpRequest();
+        xhr2.open('POST', requestURL2);
+        xhr2.onload = () => {
+           c_distans= (xhr2.response).split("/")
+        };
+        xhr2.send(data);
+    }
+    
+    </script>
+<!-- OpenCV로 실행되는 자바 스크립트 -->
+<script async src="https://docs.opencv.org/3.4.0/opencv.js" onload="onOpenCvReady1()" type="text/javascript"></script>
 </body>
 </html>
