@@ -78,8 +78,34 @@ input[id="menuicon"]:checked + label + div div.menu {display: block; z-index: 10
 #btnEmblem {display: none;}
 .emblem {display: none;}
 #btnEmblem:checked + label + div div.emblem {
-    display: block; z-index: 10; background-color: rgba(0,0,0,0.9); position: absolute; top: 0; left: 0;
+    display: block; z-index: 99; background-color: rgba(0,0,0,0.9); position: absolute; top: 0; left: 0;
 }
+
+/* product */
+.hoverProduct {
+    display: none;
+}
+.product:hover {
+    display: none;
+    z-index: -1;
+}
+.product:hover ~ .hoverProduct {
+    display: block;
+}
+/* Payment 동작 CSS */
+#btnPayment {display: none;}
+.payment {display: none;}
+#btnPayment:checked + div {
+    position: absolute;
+    z-index: -1;
+}
+#btnPayment:checked + div + div {
+    display: block;
+}
+#btnPayment:checked + div + div div + div label + div div.payment {
+    display: block; z-index: 99; background-color: rgba(0,0,0,0.9); position: absolute; top: 0; left: 0;
+}
+
 
 /* 반응형 폰트 크기 조절 */
 @media (min-width: 1024px) {
