@@ -3,22 +3,126 @@
 <head>
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Menu</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1, minimum-scale=1, maximum-scale=1">
     <!-- 임포트 -->
     <link rel="stylesheet" href="./static/css/style.css" />
+    <!-- Link Swiper's CSS -->
+    <link
+      rel="stylesheet"
+      href="https://unpkg.com/swiper/swiper-bundle.min.css"
+    />
+    <title>Menu</title>
 </head>
 <body>
     <div class="menu" style="width: 100%; height: 100vh; color: white;">
-        <div style="height: 20rem;"></div>
-        하이루~~ 메뉴에염!!<br><br>
-        <a href="./playdance.html">PlayDance</a><br>
-        <a href="./playdance_result.html">PlayDanceResult</a><br>
-        <a href="./mypage.html">MyPage</a><br>
-        <a href="./ranking_song.html">노래별 순위</a><br>
-        <a href="./ranking_country.html">국가별 순위</a><br>
-        <a href="./board.html">게시판</a><br>
-        <a href="./store.html">상점</a><br>
+        <div style="height: 6.5625rem;"></div>
+        <div id="entire">
+            <!-- 메뉴 -->
+            <div id="menuList">
+                <div class="menuList" onclick="location.href='./main.html'">HOME</div>
+                <div class="menuList" onclick="location.href='./main.html'">ABOUT</div>
+                <div class="menuList" id="tutorial">TUTORIAL</div>
+                <div class="menuList" id="playDance">PLAY DANCE</div>
+                <div class="menuList" id="ranking">RANKING</div>
+                <div class="menuList" onclick="location.href='./board.html'">BOARD</div>
+                <div class="menuList" onclick="location.href='./store.html'">STORE</div>
+            </div>
+            <!-- TUTORIAL -->
+            <div id="tutorialList">
+                <div class="tutorialList">실용만점! 누구나 출 수 있는 '만능리듬' 튜토리얼!</div>
+                <div class="tutorialList">몸치 탈출 성공하려면~! 꼭 알아야할 '무릎다운리듬' 튜토리얼!</div>
+                <div class="tutorialList">리듬타며 자연스럽게 걷는 법 '업리듬 스텝' 튜토리얼!</div>
+                <div class="tutorialList">아무 음악에나 자연스럽게 리듬 타는 법 '업리듬' 튜토리얼!</div>
+                <div class="tutorialList">가장 쉬운 리듬 기초 '다운리듬'</div>
+            </div>
+            <!-- PLAYDANCE -->
+            <div id="playDanceList">
+                <div style="margin-bottom: 1rem;">
+                    <!-- PLAYDANCE 정렬 버튼 -->
+                    <input type="button" class="btnSortPlayDance" id="sortSong" value="곡명"> 
+                    <input type="button" class="btnSortPlayDance" id="sortSinger" value="가수명"> 
+                    <input type="button" class="btnSortPlayDance" id="sortDifficulty" value="난이도"> 
+                    <input type="button" class="btnSortPlayDance" id="sortReleaseDate" value="출시"> 
+                </div>
+                <!-- Swiper -->
+                <div class="swiper-container mySwiper">
+                    <div class="swiper-wrapper">
+
+                        <!-- 반복 -->
+                        <!-- 노래1 -->
+                        <div class="swiper-slide">
+                            <div class="playDanceTitle">
+                                <!-- 노래 제목 / 가수 / 난이도 -->
+                                Next Level - aespa  | Normal
+                            </div>
+                            <!-- 노래 이미지 -->
+                            <img src="./static/img/넥스트레벨.jpg" />
+                        </div>
+
+                        <!-- 노래2 -->
+                        <div class="swiper-slide">
+                            <div class="playDanceTitle">
+                                Dynamite - 방탄소년단  | Hard
+                            </div>
+                            <img src="./static/img/다이너마이트.jpg" />
+                        </div>
+
+                        <!-- 노래3 -->
+                        <div class="swiper-slide">
+                            <div class="playDanceTitle">
+                                라일락 - 아이유 (IU)  | Easy
+                            </div>
+                            <img src="./static/img/라일락.jpg" />
+                        </div>
+
+                        <!-- 노래4 -->
+                        <div class="swiper-slide">
+                            <div class="playDanceTitle">
+                                롤린 (Rollin`) - 브레이브걸스 (Brave Girls)  | Normal 
+                            </div>
+                            <img src="./static/img/롤린.jpg" />
+                        </div>
+
+                        <!-- 노래5 -->
+                        <div class="swiper-slide">
+                            <div class="playDanceTitle">
+                                Butter - 방탄소년단  | Normal
+                            </div>
+                            <img src="./static/img/버터.jpg" />
+                        </div>
+
+                    </div>
+                </div>
+            </div> 
+            <!-- 랭킹 -->
+            <div id="rankingList">
+                <div class="rankingList" onclick="location.href='./ranking_song.html'">노래별 순위</div>
+                <div class="rankingList" onclick="location.href='./ranking_country.html'">국가별 순위</div>
+            </div>
+        </div>
     </div>
 </body>
+<!-- 메뉴 동작 JS -->
+<script type="text/javascript" src="./static/js/menu.js"></script>
+<!-- Swiper JS -->
+<script src="https://unpkg.com/swiper/swiper-bundle.min.js"></script>
+<!-- Initialize Swiper -->
+<script>
+    var swiper = new Swiper(".mySwiper", {
+        effect: "coverflow",
+        direction: "vertical",
+        loop: true,
+        mousewheel: true,
+        centeredSlides: true,
+        slidesPerView: "auto",
+        coverflowEffect: {
+            rotate: 0,
+            stretch: 200,
+            depth: 200,
+            modifier: 1,
+            slideShadows: true,
+        },
+    });
+</script>
+
 </html>
