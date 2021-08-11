@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="viewport" content="width=device-width, initial-scale=1, minimum-scale=1, maximum-scale=1">
     <!-- 임포트 -->
     <link rel="stylesheet" href="./static/css/style.css" />
     <script src="//code.jquery.com/jquery-1.11.0.min.js"></script>
@@ -12,7 +12,7 @@
 			$("#navi").load("./navigation.html");
 		});
 	</script>
-	<!-- Swiper JS -->
+    <!-- Swiper JS -->
     <script src="https://unpkg.com/swiper/swiper-bundle.min.js"></script>
     <title>Main</title>
 </head>
@@ -22,12 +22,85 @@
         <div id="navi"></div>
         <!-- 메인 내용 -->
         <div style="height: 100%; display: flex;">
-            <!-- 샘플 이미지 2개 -->
             <div style="width: 50%; height: 100%;">
-                <div style="width: 100%; height: 3rem;"></div>
-                <img src="./static/img/main_sample1.png" style="width: 40rem; height: 22.5rem; border: 0.0625rem solid #ffffff;">
-                <div style="height: 1rem;"></div>
-                <img src="./static/img/main_sample2.png" style="width: 40rem; height: 22.5rem; border: 0.0625rem solid #ffffff;">
+                <div style="width: 50rem; height: 50rem; margin: 1.5rem 5.5rem 1.5rem 4.5rem; background-color: rgba(0,0,0,0.5); border: 0.125rem solid white; border-radius: 2rem;">
+                    <div style="height: 10rem; margin-top: 3rem; display: flex; margin-bottom: 2rem;">
+                        <div style="width: 50%; height: 100%;">
+                            <div style="width: 16.25rem; height: 10rem; margin-left: 7.5rem; margin-right: 1.25rem;">
+                                <!-- 우승 국가 이미지 -->
+                                <img src="./static/img/태극기.jpg" style="width: 100%; height: 100%;">
+                            </div>
+                        </div>
+                        <div style="width: 50%; height: 100%; display: flex; flex-direction: column; justify-content: center; align-items: flex-start; font-family: 'GmarketSansTTFBold';">
+                            <!-- 시즌 / 우승 국가 이름 -->
+                            <span>00시즌 우승 국가</span><br>
+                            <span style="font-size: 2.0rem;">대한민국</span>
+                        </div>
+                    </div>
+
+                    <!-- 1위 -->
+                    <div style="height: 10rem; display: flex; margin-bottom: 1.25rem;">
+                        <div style="width: 15%; height: 100%;">
+                            <div style="width: 3.75rem; height: 3.75rem; margin: 3.125rem 0  3.125rem 3.75rem;">
+                                <!-- 메달 이미지 -->
+                                <img src="./static/img/gold_medal.png" style="width: 100%; height: 100%;">
+                            </div>
+                        </div>
+                        <div style="width: 25%; height: 100%;">
+                            <div style="width: 10rem; height: 10rem; margin: 0 1.25rem;">
+                                <!-- 프로필 이미지 -->
+                                <img src="./data/profile_image/iu3.jpg" style="width: 100%; height: 100%; border: 0.0625rem solid white; border-radius: 50%;">
+                            </div>
+                        </div>
+                        <div style="width: 60%; height: 100%; display: flex; flex-direction: column; justify-content: center; align-items: flex-start;">
+                            <!-- 닉네임 / 점수 -->
+                            <span>닉네임 : ForeverLoveUaena</span><br>
+                            <span>점수 : 479.74</span>
+                        </div>
+                    </div>
+
+                    <!-- 2위 -->
+                    <div style="height: 10rem; display: flex; margin-bottom: 1.25rem;">
+                        <div style="width: 15%; height: 100%;">
+                            <div style="width: 3.75rem; height: 3.75rem; margin: 3.125rem 0  3.125rem 3.75rem;">
+                                <!-- 메달 이미지 -->
+                                <img src="./static/img/gold_medal.png" style="width: 100%; height: 100%;">
+                            </div>
+                        </div>
+                        <div style="width: 25%; height: 100%;">
+                            <div style="width: 10rem; height: 10rem; margin: 0 1.25rem;">
+                                <!-- 프로필 이미지 -->
+                                <img src="./data/profile_image/iu3.jpg" style="width: 100%; height: 100%; border: 0.0625rem solid white; border-radius: 50%;">
+                            </div>
+                        </div>
+                        <div style="width: 60%; height: 100%; display: flex; flex-direction: column; justify-content: center; align-items: flex-start;">
+                            <!-- 닉네임 / 점수 -->
+                            <span>닉네임 : ForeverLoveUaena</span><br>
+                            <span>점수 : 479.74</span>
+                        </div>
+                    </div>
+
+                    <!-- 3위 -->
+                    <div style="height: 10rem; display: flex; margin-bottom: 1.25rem;">
+                        <div style="width: 15%; height: 100%;">
+                            <div style="width: 3.75rem; height: 3.75rem; margin: 3.125rem 0  3.125rem 3.75rem;">
+                                <!-- 메달 이미지 -->
+                                <img src="./static/img/gold_medal.png" style="width: 100%; height: 100%;">
+                            </div>
+                        </div>
+                        <div style="width: 25%; height: 100%;">
+                            <div style="width: 10rem; height: 10rem; margin: 0 1.25rem;">
+                                <!-- 프로필 이미지 -->
+                                <img src="./data/profile_image/iu3.jpg" style="width: 100%; height: 100%; border: 0.0625rem solid white; border-radius: 50%;">
+                            </div>
+                        </div>
+                        <div style="width: 60%; height: 100%; display: flex; flex-direction: column; justify-content: center; align-items: flex-start;">
+                            <!-- 닉네임 / 점수 -->
+                            <span>닉네임 : ForeverLoveUaena</span><br>
+                            <span>점수 : 479.74</span>
+                        </div>
+                    </div>
+                </div>
             </div>
             <!-- 웹페이지 소개글 이미지 -->
             <div style="width: 50%; height: 100%;">
@@ -36,4 +109,5 @@
         </div>
     </div>
 </body>
+
 </html>
