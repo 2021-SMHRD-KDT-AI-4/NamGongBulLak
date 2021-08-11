@@ -3,22 +3,22 @@
 /* 폰트 설정 */
 @font-face {
     font-family:'GmarketSansTTFLight';
-    src: url("Third_PJ/static/font/GmarketSansTTFLight.ttf");
+    src: url("../font/GmarketSansTTFLight.ttf");
 }
 
 @font-face {
     font-family:'GmarketSansTTFBold';
-    src: url("Third_PJ/static/font/GmarketSansTTFBold.ttf");
+    src: url("../font/GmarketSansTTFBold.ttf");
 }
 
 @font-face {
     font-family:'GmarketSansTTFMedium';
-    src: url("Third_PJ/static/font/GmarketSansTTFMedium.ttf");
+    src: url("../font/GmarketSansTTFMedium.ttf");
 }
 
 @font-face {
     font-family:'Bangtan';
-    src: url("Third_PJ/static/font/DXBangtango-KSCpc-EUC-H.ttf");
+    src: url("../font/DXBangtango-KSCpc-EUC-H.ttf");
 }
 
 /* body 기본 설정 */
