@@ -1,3 +1,7 @@
+<%@page import="com_model.RankingCountryDTO"%>
+<%@page import="com_model.RankingCountryDAO"%>
+<%@page import="java.util.ArrayList"%>
+
 <%@page import="com_model.MemberDTO"%>
 <%@ page language="java" contentType="text/html; charset=EUC-KR"
     pageEncoding="EUC-KR"%>
@@ -18,7 +22,13 @@
     <title>CountryRanking</title>
 </head>
 <body>
-<% MemberDTO info = (MemberDTO)session.getAttribute("info"); %>
+<% MemberDTO info = (MemberDTO)session.getAttribute("info"); 
+	RankingCountryDAO rankingCountrydao = new RankingCountryDAO();
+	String rcountry = request.getParameter("rcountry");
+	RankingCountryDTO rankingCountrydto = rankingCountrydao.showCRanking("rcountry");
+	ArrayList<RankingCountryDTO> RClist = rankingCountrydao.countRankingCountry("rcountry");
+	ArrayList<RankingCountryDTO> CVlist = rankingCountrydao.showSum(); 
+%>
 
     <div style="background-color: rgba(0,0,0,0.5); width: 100%; height: 100vh;">
         <!-- 상단 네비게이션 -->
@@ -35,114 +45,89 @@
             <div style="width: 38.25rem;">
                 <div style="height: 17.5rem;">
                     <div style="height: 100%; display: flex; flex-direction: row;">
+                       	
                         <div style="width: 11.25rem;">
-                            <div style="height: 12.5rem; display: flex; align-items: center; justify-content: center;">
+                            <div id="secimg" style="height: 12.5rem; display: flex; align-items: center; justify-content: center;">
                                 <!-- 2위 국가 사진 -->
-                                <img src="./static/img/태극기.jpg" style="width: 11.25rem; border: 0.0625rem solid #fff;">
+                                <%if(CVlist.get(1).getRcountry().equals("korea")){ %>
+                                <img src="./country/D.jpg" style="width: 11.25rem; border: 0.0625rem solid #fff;">
+                            	<% } else if(CVlist.get(1).getRcountry().equals("china")) {%>
+                                <img src="./country/C.png" style="width: 11.25rem; border: 0.0625rem solid #fff;">
+                            	<% } else if(CVlist.get(1).getRcountry().equals("japan")) {%>
+                                <img src="./country/J.png" style="width: 11.25rem; border: 0.0625rem solid #fff;">
+                            	<% } else if(CVlist.get(1).getRcountry().equals("usa")) {%>
+                                <img src="./country/U.png" style="width: 11.25rem; border: 0.0625rem solid #fff;">
+                            	<% } %>
                             </div>
                             <div style="height: 5rem; display: flex; align-items: center; justify-content: center;">
-                                <img src="./static/img/gold_medal.png" style="height: 2.5rem;">
+                                <img src="./emblem/silver_medal.jpg" style="height: 2.5rem;">
                                 <!-- 2위 국가 이름 -->
-                                독도는
+                                <div style="font-size: 1.3rem;" id="sec"><%= CVlist.get(1).getRcountry() %></div>
                             </div>
                         </div>
                         <div style="width: 17rem;">
                             <div style="height: 12.5rem; display: flex; align-items: center; justify-content: center;">
                                 <!-- 1위 국가 사진 -->
-                                <img src="./static/img/태극기.jpg" style="width: 12.5rem; border: 0.0625rem solid #fff;">
+                                <%if(CVlist.get(0).getRcountry().equals("korea")){ %>
+                                <img src="./country/D.jpg" style="width: 11.25rem; border: 0.0625rem solid #fff;">
+                            	<% } else if(CVlist.get(0).getRcountry().equals("china")) {%>
+                                <img src="./country/C.png" style="width: 11.25rem; border: 0.0625rem solid #fff;">
+                            	<% } else if(CVlist.get(0).getRcountry().equals("japan")) {%>
+                                <img src="./country/J.png" style="width: 11.25rem; border: 0.0625rem solid #fff;">
+                            	<% } else if(CVlist.get(0).getRcountry().equals("usa")) {%>
+                                <img src="./country/U.png" style="width: 11.25rem; border: 0.0625rem solid #fff;">
+                            	<% } %>
                             </div>
                             <div style="height: 5rem; display: flex; align-items: center; justify-content: center;">
-                                <img src="./static/img/gold_medal.png" style="height: 2.5rem;">
+                                <img src="./emblem/gold_medal.jpg" style="height: 2.5rem;">
                                 <!-- 1위 국가 이름 -->
-                                대한민국
+                                <div style="font-size: 1.3rem;" id="fe"><%= CVlist.get(0).getRcountry() %></div>
                             </div>
                         </div>
                         <div style="width: 10rem;">
                             <div style="height: 12.5rem; display: flex; align-items: center; justify-content: center;">
                                 <!-- 3위 국가 사진 -->
-                                <img src="./static/img/태극기.jpg" style="width: 10rem; border: 0.0625rem solid #fff;">
+                                <%if(CVlist.get(2).getRcountry().equals("korea")){ %>
+                                <img src="./country/D.jpg" style="width: 11.25rem; border: 0.0625rem solid #fff;">
+                            	<% } else if(CVlist.get(2).getRcountry().equals("china")) {%>
+                                <img src="./country/C.png" style="width: 11.25rem; border: 0.0625rem solid #fff;">
+                            	<% } else if(CVlist.get(2).getRcountry().equals("japan")) {%>
+                                <img src="./country/J.png" style="width: 11.25rem; border: 0.0625rem solid #fff;">
+                            	<% } else if(CVlist.get(2).getRcountry().equals("usa")) {%>
+                                <img src="./country/U.png" style="width: 11.25rem; border: 0.0625rem solid #fff;">
+                            	<% } %>
                             </div>
                             <div style="height: 5rem; display: flex; align-items: center; justify-content: center;">
-                                <img src="./static/img/gold_medal.png" style="height: 2.5rem;">
+                                <img src="./emblem/bronze_medal.jpg" style="height: 2.5rem;">
                                 <!-- 3위 국가 이름 -->
-                                우리땅
+                                <div style="font-size: 1.3rem;" id="th"><%= CVlist.get(2).getRcountry() %></div>
                             </div>
                         </div>
+                       
                     </div>
                 </div>
                 <div style="height: 33.5rem;margin: 0 2.5rem;">
                     <!-- 테이블 -->
                     <div style="height: 33.5rem; background-color: rgba(207, 207, 207, 0.5); color: black; overflow:overlay;">
                         <!-- 테이블 제목 -->
-                        <div style="font-size: 2rem; font-family: 'GmarketSansTTFBold'; display: grid; grid-template-columns: 5rem 8.75rem 18.25rem;">
+                        <div style="font-size: 2rem; font-family: 'GmarketSansTTFBold'; display: grid; grid-template-columns: 5rem 11rem 17rem;">
                             <div>순위</div>
                             <div>국가</div>
                             <div>점수</div>
                         </div>
                         <!-- 테이블 내용 -->
-                        <div style="font-size: 2rem; display: grid; grid-template-columns: 5rem 8.75rem 18.25rem;">
+                		<% for(int i=0; i<CVlist.size(); i++) { %>
+                        <div style="font-size: 2rem; display: grid; grid-template-columns: 5rem 11rem 17rem;">
                             <!-- 반복 1 -->
                             <!-- 순위 -->
-                            <div>1</div>
+                            <div><%= CVlist.get(i).getRank() %></div>
                             <!-- 국가 사진/국가명 -->
-                            <div>
-                                <img src="./static/img/태극기.jpg" style="width: 5rem; border: 0.0625rem solid #fff;">
-                                <br>대한민국
-                            </div>
+                            <div><input style="font-family: 'GmarketSansTTFBold'; font-size: 2rem; background-color:transparent; outline:none; border:none;" type="button" id="country<%= i %>" name="country" value="<%= CVlist.get(i).getRcountry() %>" onclick="countryclick(<%=i%>)"></div>
                             <!-- 점수 -->
-                            <div>
-                                123,456,789
-                            </div>
-                            <!-- 반복 2 -->
-                            <!-- 순위 -->
-                            <div>1</div>
-                            <!-- 국가 사진/국가명 -->
-                            <div>
-                                <img src="./static/img/태극기.jpg" style="width: 5rem; border: 0.0625rem solid #fff;">
-                                <br>대한민국
-                            </div>
-                            <!-- 점수 -->
-                            <div>
-                                123,456,789
-                            </div>
-                            <!-- 반복 2 -->
-                            <!-- 순위 -->
-                            <div>1</div>
-                            <!-- 국가 사진/국가명 -->
-                            <div>
-                                <img src="./static/img/태극기.jpg" style="width: 5rem; border: 0.0625rem solid #fff;">
-                                <br>대한민국
-                            </div>
-                            <!-- 점수 -->
-                            <div>
-                                123,456,789
-                            </div>
-                            <!-- 반복 2 -->
-                            <!-- 순위 -->
-                            <div>1</div>
-                            <!-- 국가 사진/국가명 -->
-                            <div>
-                                <img src="./static/img/태극기.jpg" style="width: 5rem; border: 0.0625rem solid #fff;">
-                                <br>대한민국
-                            </div>
-                            <!-- 점수 -->
-                            <div>
-                                123,456,789
-                            </div>
-                            <!-- 반복 2 -->
-                            <!-- 순위 -->
-                            <div>1</div>
-                            <!-- 국가 사진/국가명 -->
-                            <div>
-                                <img src="./static/img/태극기.jpg" style="width: 5rem; border: 0.0625rem solid #fff;">
-                                <br>대한민국
-                            </div>
-                            <!-- 점수 -->
-                            <div>
-                                123,456,789
-                            </div>
-                            
+                            <div><%= CVlist.get(i).getCRSum() %></div>
                         </div>
+                       	<% } %>
+                       	
                     </div>
                 </div>
             </div>
@@ -158,128 +143,78 @@
                         <div>엠블럼</div>
                     </div>
                     <!-- 테이블 내용 -->
-                    <div style="font-size: 2rem; display: grid; grid-template-columns: 5rem 9.75rem 21.25rem 5rem 14.75rem;">
-                        <!-- 반복 1 -->
-                        <!-- 순위 -->
-                        <div>1</div>
-                        <!-- 프로필 사진 -->
-                        <div>
-                            <img src="./data/profile_image/iu3.jpg" style="height: 6.25rem; width: 6.25rem; border: 0.0625rem solid #fff; border-radius: 50%;">
-                        </div>
-                        <!-- 닉네임 -->
-                        <div>
-                            청춘은
-                        </div>
-                        <!-- 점수 -->
-                        <div>87.17</div>
-                        <!-- 엠블럼 -->
+                    <div id="countryRankingTable" style="font-size: 2rem; display: grid; grid-template-columns: 5rem 9.75rem 21.25rem 5rem 4.9rem 4.9rem 4.9rem;">
                         <div style="display: flex; flex-direction: row; justify-content: space-between; padding: 0 1rem;">
-                            <img src="./static/img/gold_medal.png" style="height: 3.75rem; width: 3.75rem;">
-                            <img src="./static/img/gold_medal.png" style="height: 3.75rem; width: 3.75rem;">
-                            <img src="./static/img/gold_medal.png" style="height: 3.75rem; width: 3.75rem;">
-                        </div>
-                        <!-- 반복 2 -->
-                        <div>1</div>
-                        <div>
-                            <img src="./data/profile_image/iu3.jpg" style="height: 6.25rem; width: 6.25rem; border: 0.0625rem solid #fff; border-radius: 50%;">
-                        </div>
-                        <div>
-                            청춘은
-                        </div>
-                        <div>87.17</div>
-                        <div style="display: flex; flex-direction: row; justify-content: space-between; padding: 0 1rem;">
-                            <img src="./static/img/gold_medal.png" style="height: 3.75rem; width: 3.75rem;">
-                            <img src="./static/img/gold_medal.png" style="height: 3.75rem; width: 3.75rem;">
-                            <img src="./static/img/gold_medal.png" style="height: 3.75rem; width: 3.75rem;">
-                        </div>
-                        <!-- 반복 2 -->
-                        <div>1</div>
-                        <div>
-                            <img src="./data/profile_image/iu3.jpg" style="height: 6.25rem; width: 6.25rem; border: 0.0625rem solid #fff; border-radius: 50%;">
-                        </div>
-                        <div>
-                            청춘은
-                        </div>
-                        <div>87.17</div>
-                        <div style="display: flex; flex-direction: row; justify-content: space-between; padding: 0 1rem;">
-                            <img src="./static/img/gold_medal.png" style="height: 3.75rem; width: 3.75rem;">
-                            <img src="./static/img/gold_medal.png" style="height: 3.75rem; width: 3.75rem;">
-                            <img src="./static/img/gold_medal.png" style="height: 3.75rem; width: 3.75rem;">
-                        </div>
-                        <!-- 반복 2 -->
-                        <div>1</div>
-                        <div>
-                            <img src="./data/profile_image/iu3.jpg" style="height: 6.25rem; width: 6.25rem; border: 0.0625rem solid #fff; border-radius: 50%;">
-                        </div>
-                        <div>
-                            청춘은
-                        </div>
-                        <div>87.17</div>
-                        <div style="display: flex; flex-direction: row; justify-content: space-between; padding: 0 1rem;">
-                            <img src="./static/img/gold_medal.png" style="height: 3.75rem; width: 3.75rem;">
-                            <img src="./static/img/gold_medal.png" style="height: 3.75rem; width: 3.75rem;">
-                            <img src="./static/img/gold_medal.png" style="height: 3.75rem; width: 3.75rem;">
-                        </div>
-                        <!-- 반복 2 -->
-                        <div>1</div>
-                        <div>
-                            <img src="./data/profile_image/iu3.jpg" style="height: 6.25rem; width: 6.25rem; border: 0.0625rem solid #fff; border-radius: 50%;">
-                        </div>
-                        <div>
-                            청춘은
-                        </div>
-                        <div>87.17</div>
-                        <div style="display: flex; flex-direction: row; justify-content: space-between; padding: 0 1rem;">
-                            <img src="./static/img/gold_medal.png" style="height: 3.75rem; width: 3.75rem;">
-                            <img src="./static/img/gold_medal.png" style="height: 3.75rem; width: 3.75rem;">
-                            <img src="./static/img/gold_medal.png" style="height: 3.75rem; width: 3.75rem;">
-                        </div>
-                        <!-- 반복 2 -->
-                        <div>1</div>
-                        <div>
-                            <img src="./data/profile_image/iu3.jpg" style="height: 6.25rem; width: 6.25rem; border: 0.0625rem solid #fff; border-radius: 50%;">
-                        </div>
-                        <div>
-                            청춘은
-                        </div>
-                        <div>87.17</div>
-                        <div style="display: flex; flex-direction: row; justify-content: space-between; padding: 0 1rem;">
-                            <img src="./static/img/gold_medal.png" style="height: 3.75rem; width: 3.75rem;">
-                            <img src="./static/img/gold_medal.png" style="height: 3.75rem; width: 3.75rem;">
-                            <img src="./static/img/gold_medal.png" style="height: 3.75rem; width: 3.75rem;">
-                        </div>
-                        <!-- 반복 2 -->
-                        <div>1</div>
-                        <div>
-                            <img src="./data/profile_image/iu3.jpg" style="height: 6.25rem; width: 6.25rem; border: 0.0625rem solid #fff; border-radius: 50%;">
-                        </div>
-                        <div>
-                            청춘은
-                        </div>
-                        <div>87.17</div>
-                        <div style="display: flex; flex-direction: row; justify-content: space-between; padding: 0 1rem;">
-                            <img src="./static/img/gold_medal.png" style="height: 3.75rem; width: 3.75rem;">
-                            <img src="./static/img/gold_medal.png" style="height: 3.75rem; width: 3.75rem;">
-                            <img src="./static/img/gold_medal.png" style="height: 3.75rem; width: 3.75rem;">
-                        </div>
-                        <!-- 반복 2 -->
-                        <div>1</div>
-                        <div>
-                            <img src="./data/profile_image/iu3.jpg" style="height: 6.25rem; width: 6.25rem; border: 0.0625rem solid #fff; border-radius: 50%;">
-                        </div>
-                        <div>
-                            청춘은
-                        </div>
-                        <div>87.17</div>
-                        <div style="display: flex; flex-direction: row; justify-content: space-between; padding: 0 1rem;">
-                            <img src="./static/img/gold_medal.png" style="height: 3.75rem; width: 3.75rem;">
-                            <img src="./static/img/gold_medal.png" style="height: 3.75rem; width: 3.75rem;">
-                            <img src="./static/img/gold_medal.png" style="height: 3.75rem; width: 3.75rem;">
                         </div>
                     </div>
                 </div>
             </div>
         </div>
     </div>
+    
+<script  src="http://code.jquery.com/jquery-latest.min.js"></script>
+<script>
+function countryclick(num){
+	$.ajax({
+		type : "post",
+		data : {
+			"country" : $('#country'+num).val()
+		},
+		url : "CountrayRankService",
+		dataType: "JSON",
+		success : function(data){
+			console.log(data);
+			$("#countryRankingTable").html(data);
+			for(var i = 0; i < data.length; i++){
+// 				console.log('hi2 : ' + data[i].emblem.indexOf(","));
+				$("#countryRankingTable").append('<div>'+data[i].rank+'</div>'); 
+				$("#countryRankingTable").append('<div><img src=">'+data[i].proImg+'" style="height: 6.25rem; width: 6.25rem; border: 0.0625rem solid #fff; border-radius: 50%;"></div>'); 
+				$("#countryRankingTable").append('<div>'+data[i].nickname+'</div>'); 
+				$("#countryRankingTable").append('<div>'+data[i].accuracy+'</div>');
+				if(data[i].emblem == undefined) {
+					$("#countryRankingTable").append('<div style="display: flex; flex-direction: row; justify-content: space-between; padding: 0 1rem;"></div>');
+					$("#countryRankingTable").append('<div style="display: flex; flex-direction: row; justify-content: space-between; padding: 0 1rem;"></div>');
+					$("#countryRankingTable").append('<div style="display: flex; flex-direction: row; justify-content: space-between; padding: 0 1rem;"></div>');
+				}else if (data[i].emblem.indexOf(',') == -1){
+					$("#countryRankingTable").append('<div style="display: flex; flex-direction: row; justify-content: space-between; padding: 0 1rem;"><img src="'+data[i].emblem+'" style="height: 3.75rem; width: 3.75rem;"></div>');
+					$("#countryRankingTable").append('<div style="display: flex; flex-direction: row; justify-content: space-between; padding: 0 1rem;"></div>');
+					$("#countryRankingTable").append('<div style="display: flex; flex-direction: row; justify-content: space-between; padding: 0 1rem;"></div>');
+				} else {
+					const emblems = data[i].emblem.split(",");
+					for(var j = 0; j < emblems.length; j++) {
+						$("#countryRankingTable").append('<div style="display: flex; flex-direction: row; justify-content: space-between; padding: 0 1rem;"><img src="'+emblems[j]+'" style="height: 3.75rem; width: 3.75rem;"></div>');
+					}
+				}
+				/* $("#countryRankingTable").append('</div>'); */
+				
+				
+			}
+			/* if(data.length == 1){
+				$("#sec").html('');
+				$("#fe").html(data[0].nickname);
+				$("#th").html('');
+			}else if(data.length == 2){
+				$("#sec").html(data[1].nickname);
+				$("#fe").html(data[0].nickname);
+				$("#th").html('');
+			}else if(data.length >= 3){
+				$("#sec").html(data[1].nickname);
+				$("#fe").html(data[0].nickname);
+				$("#th").html(data[2].nickname);
+			}else{
+				$("#sec").html('');
+				$("#fe").html('');
+				$("#th").html('');
+			} */
+			/* console.log(data);
+			$("#secimg").html(data);
+			$("#secimg").append('<img src="./image/'+data[1].proImg+'" style="width: 11.25rem; border: 0.0625rem solid #fff;">'); */
+		},
+		error : function(){
+			alert("실패");
+		}
+	});
+}
+</script>
 </body>
 </html>
